@@ -148,7 +148,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
         }
     }
 
-    internal func dismissPasscodeLock(_ lock: PasscodeLockType, completionHandler: (() -> Void)? = nil) {
+    open func dismissPasscodeLock(_ lock: PasscodeLockType, completionHandler: (() -> Void)? = nil) {
         // if presented as modal
         if presentingViewController?.presentedViewController == self {
             dismiss(animated: animateOnDismiss) { [weak self] in
