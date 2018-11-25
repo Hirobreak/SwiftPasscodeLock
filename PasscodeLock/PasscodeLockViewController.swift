@@ -124,21 +124,21 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
 
     // MARK: - Actions
 
-    @IBAction func passcodeSignButtonTap(_ sender: PasscodeSignButton) {
+    @IBAction open func passcodeSignButtonTap(_ sender: PasscodeSignButton) {
         guard isPlaceholdersAnimationCompleted else { return }
 
         passcodeLock.addSign(sender.passcodeSign)
     }
 
-    @IBAction func cancelButtonTap(_ sender: UIButton) {
+    @IBAction open func cancelButtonTap(_ sender: UIButton) {
         dismissPasscodeLock(passcodeLock)
     }
 
-    @IBAction func deleteSignButtonTap(_ sender: UIButton) {
+    @IBAction open func deleteSignButtonTap(_ sender: UIButton) {
         passcodeLock.removeSign()
     }
 
-    @IBAction func touchIDButtonTap(_ sender: UIButton) {
+    @IBAction open func touchIDButtonTap(_ sender: UIButton) {
         passcodeLock.authenticateWithTouchID()
     }
 
