@@ -39,7 +39,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
     open var animateOnDismiss: Bool
     open var notificationCenter: NotificationCenter?
 
-    internal let passcodeConfiguration: PasscodeLockConfigurationType
+    open var passcodeConfiguration: PasscodeLockConfigurationType
     open var passcodeLock: PasscodeLockType
     internal var isPlaceholdersAnimationCompleted = true
 
