@@ -32,6 +32,7 @@ open class PasscodeLockViewController: UIViewController, PasscodeLockTypeDelegat
     @IBOutlet open weak var deleteSignButton: UIButton?
     @IBOutlet open weak var touchIDButton: UIButton?
     @IBOutlet open weak var placeholdersX: NSLayoutConstraint?
+    @IBOutlet open weak var signoutButton: UIButton?
 
     open var successCallback: ((_ lock: PasscodeLockType) -> Void)?
     open var dismissCompletionCallback: (() -> Void)?
