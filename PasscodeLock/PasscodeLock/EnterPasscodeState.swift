@@ -17,15 +17,6 @@ struct EnterPasscodeState: PasscodeLockStateType {
     let isCancellableAction: Bool
     var isTouchIDAllowed = true
     
-    fileprivate var incorrectPasscodeAttemptsKey = "incorrectPasscodeAttemps"
-    private var incorrectPasscodeAttempts: Int {
-        get {
-            return UserDefaults.standard.integer(forKey: incorrectPasscodeAttemptsKey)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: incorrectPasscodeAttemptsKey)
-        }
-    }
     fileprivate var isNotificationSent = false
     
     init(allowCancellation: Bool = false) {
@@ -40,13 +31,13 @@ struct EnterPasscodeState: PasscodeLockStateType {
         
             lock.delegate?.passcodeLockDidSucceed(lock)
             
-            incorrectPasscodeAttempts = 0
+            lock.resetAttempts()
         
         } else {
         
-            incorrectPasscodeAttempts += 1
+            lock.increaseAttempts(1)
         
-            if incorrectPasscodeAttempts >= lock.configuration.maximumInccorectPasscodeAttempts {
+            if lock.configuration.incorrectPasscodeAttempts >= lock.configuration.maximumInccorectPasscodeAttempts {
             
                 postNotification()
             }
