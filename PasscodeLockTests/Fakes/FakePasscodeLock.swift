@@ -11,7 +11,7 @@ import Foundation
 class FakePasscodeLock: PasscodeLockType {
     
     weak var delegate: PasscodeLockTypeDelegate?
-    let configuration: PasscodeLockConfigurationType
+    var configuration: PasscodeLockConfigurationType
     var repository: PasscodeRepositoryType { return configuration.repository }
     var state: PasscodeLockStateType { return lockState }
     let isTouchIDAllowed = false

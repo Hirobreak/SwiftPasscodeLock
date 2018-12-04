@@ -10,8 +10,8 @@ import Foundation
 import LocalAuthentication
 
 open class PasscodeLock: PasscodeLockType {
+    public var configuration: PasscodeLockConfigurationType
     open weak var delegate: PasscodeLockTypeDelegate?
-    open let configuration: PasscodeLockConfigurationType
 
     open var repository: PasscodeRepositoryType {
         return configuration.repository
@@ -69,6 +69,14 @@ open class PasscodeLock: PasscodeLockType {
 
             self.handleTouchIDResult(success)
         }
+    }
+    
+    public func resetAttempts() {
+        configuration.incorrectPasscodeAttempts = 0
+    }
+    
+    public func increaseAttempts(_ value: Int) {
+        configuration.incorrectPasscodeAttempts += 1
     }
 
     fileprivate func handleTouchIDResult(_ success: Bool) {

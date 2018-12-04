@@ -16,16 +16,6 @@ struct RemovePasscodeState: PasscodeLockStateType {
     
     private var isNotificationSent = false
     
-    fileprivate var incorrectPasscodeAttemptsKey = "incorrectPasscodeAttemps"
-    private var incorrectPasscodeAttempts: Int {
-        get {
-            return UserDefaults.standard.integer(forKey: incorrectPasscodeAttemptsKey)
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: incorrectPasscodeAttemptsKey)
-        }
-    }
-    
     init() {
         
         title = localizedStringFor(key: "PasscodeLockEnterTitle", comment: "Enter passcode title")
@@ -39,13 +29,13 @@ struct RemovePasscodeState: PasscodeLockStateType {
             
             lock.delegate?.passcodeLockDidSucceed(lock)
             
-            incorrectPasscodeAttempts = 0
+            lock.resetAttempts()
             
         } else {
             
-            incorrectPasscodeAttempts += 1
+            lock.increaseAttempts(1)
             
-            if incorrectPasscodeAttempts >= lock.configuration.maximumInccorectPasscodeAttempts {
+            if lock.configuration.incorrectPasscodeAttempts >= lock.configuration.maximumInccorectPasscodeAttempts {
                 
                 postNotification()
             }

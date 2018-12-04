@@ -10,7 +10,7 @@ import Foundation
 
 public protocol PasscodeLockType {
     var delegate: PasscodeLockTypeDelegate? { get set }
-    var configuration: PasscodeLockConfigurationType { get }
+    var configuration: PasscodeLockConfigurationType { get set }
     var repository: PasscodeRepositoryType { get }
     var state: PasscodeLockStateType { get }
     var isTouchIDAllowed: Bool { get }
@@ -19,6 +19,8 @@ public protocol PasscodeLockType {
     func removeSign()
     func changeState(_ state: PasscodeLockStateType)
     func authenticateWithTouchID()
+    func resetAttempts()
+    func increaseAttempts(_ value: Int)
 }
 
 public protocol PasscodeLockTypeDelegate: class {
